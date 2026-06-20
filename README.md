@@ -19,10 +19,10 @@ J-Vector decouples memory storage from execution pipelines using clean engineeri
              /                                   \
             /                                     \
            v                                       v
-  +-----------------------------+         +-----------------------------+
-|      SimilarityEngine       |         |       StorageEngine         |
++---------------------------=--+         +-----------------------------+
+|      SimilarityEngine        |         |       StorageEngine         |
 |  (Mathematical Cosine Core)  |         |     (Abstraction Layer)     |
-+-----------------------------+         +-----------------------------+
++------------------------------+         +-----------------------------+
 
 ## ✨ Core Features
 
@@ -68,7 +68,7 @@ Installation
 Clone the repository:
 
 Bash
-git clone [https://github.com/YOUR_USERNAME/J-Vector-DB.git](https://github.com/YOUR_USERNAME/J-Vector-DB.git)
+git clone [https://github.com/bheemesh22/J-Vector-DB.git]
 Navigate to the directory and run the main application compilation:
 
 Bash
