@@ -2,34 +2,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VectorStore {
-    // This List acts as our internal database table
     private final List<VectorRecord> storage = new ArrayList<>();
+    private StorageEngine storageEngine; // The abstract persistence layer
 
-    // 1. INSERT OPERATION: Add a record to our vault
+    // Dependency Injection via Constructor - Top 1% Practice
+    public VectorStore(StorageEngine storageEngine) {
+        this.storageEngine = storageEngine;
+    }
+
+    // Overloaded constructor for our current in-memory testing
+    public VectorStore() {
+        this.storageEngine = null;
+    }
+
     public void insert(VectorRecord record) {
         storage.add(record);
     }
 
-    // 2. SEARCH OPERATION: Scan everything and find the closest match
     public VectorRecord searchNearestNeighbor(double[] queryVector) {
-        if (storage.isEmpty()) {
-            return null; // Can't search an empty database
-        }
+        if (storage.isEmpty()) return null;
 
         VectorRecord bestMatch = null;
-        double highestSimilarity = -1.0; // Start at the lowest possible score
+        double highestSimilarity = -1.0;
 
-        // The Scan: Look at every single saved book one by one
         for (VectorRecord record : storage) {
             double currentScore = SimilarityEngine.calculateCosineSimilarity(queryVector, record.getVector());
-
-            // If this book is closer than the best one we've seen so far, update it!
             if (currentScore > highestSimilarity) {
                 highestSimilarity = currentScore;
                 bestMatch = record;
             }
         }
-
         return bestMatch;
     }
 }
