@@ -10,11 +10,6 @@ J-Vector decouples memory storage from execution pipelines using clean engineeri
 
 
 
-
-============================================================
-                J-VECTOR ENGINE ARCHITECTURE                
-============================================================
-
          +----------------------------------------+
          |               Client API               |
          |      (Spring Boot / Main Execution)    |
@@ -29,16 +24,15 @@ J-Vector decouples memory storage from execution pipelines using clean engineeri
          +----------------------------------------+
                    /                    \
                   / Uses                 \ Uses
-                 v                        v
-  +--------------------------+  +--------------------------+
-  |     SimilarityEngine     |  |      StorageEngine       |
-  | (Mathematical Core)      |  |  (Interface Blueprint)   |
-  |                          |  |                          |
-  | - Vector Cosine Math     |  | - Decoupled IO Contract  |
-  | - O(1) Crash Safeguards  |  | - Ready for Binary/NIO   |
-  +--------------------------+  +--------------------------+
+                 v                        v     
+       +--------------------------+  +--------------------------+     
+       |     SimilarityEngine     |  |      StorageEngine       |       
+       | (Mathematical Core)      |  |  (Interface Blueprint)   |     
+       | - Vector Cosine Math     |  | - Decoupled IO Contract  |     
+       | - O(1) Crash Safeguards  |  | - Ready for Binary/NIO   |     
+       +--------------------------+  +--------------------------+
 
-============================================================
+
 ## ✨ Core Features
 
 * **Custom Math Kernel:** Hand-written implementation of multi-dimensional **Cosine Similarity** without external linear algebra dependencies.
@@ -85,7 +79,6 @@ Clone the repository:
 Bash
 git clone [https://github.com/bheemesh22/J-Vector-DB.git]
 Navigate to the directory and run the main application compilation:
-
 Bash
 mvn clean package
 java -cp target/classes Main
