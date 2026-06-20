@@ -10,35 +10,35 @@ J-Vector decouples memory storage from execution pipelines using clean engineeri
 
 
 
-========================================================================
-                      J-VECTOR ENGINE ARCHITECTURE                      
-========================================================================
 
-       +-------------------------------------------------------+
-       |                      Client API                       |
-       |             (Spring Boot / Main Execution)            |
-       +-------------------------------------------------------+
-                                   |
-                                   | Invokes
-                                   v
-       +-------------------------------------------------------+
-       |               VectorStore (Memory Table)              |
-       |   - Manages List<VectorRecord>                        |
-       |   - Coordinates Search & Ingestion Pipelines          |
-       +-------------------------------------------------------+
-                 /                                   \
-                / Uses                                \ Uses
-               v                                       v
-+-----------------------------+         +-----------------------------+
-|      SimilarityEngine       |         |        StorageEngine        |
-|  (Mathematical Cosine Core)  |         |     (Interface Blueprint)   |
-|                             |         |                             |
-|  - Vector Alignment Math    |         |  - Decoupled IO contract    |
-|  - O(1) Crash Safeguards    |         |  - Ready for Binary/NIO     |
-+-----------------------------+         +-----------------------------+
+============================================================
+                J-VECTOR ENGINE ARCHITECTURE                
+============================================================
 
-========================================================================
+         +----------------------------------------+
+         |               Client API               |
+         |      (Spring Boot / Main Execution)    |
+         +----------------------------------------+
+                             |
+                             | Invokes
+                             v
+         +----------------------------------------+
+         |       VectorStore (Memory Table)       |
+         |   - Manages List<VectorRecord>          |
+         |   - Coordinates Search Pipelines       |
+         +----------------------------------------+
+                   /                    \
+                  / Uses                 \ Uses
+                 v                        v
+  +--------------------------+  +--------------------------+
+  |     SimilarityEngine     |  |      StorageEngine       |
+  | (Mathematical Core)      |  |  (Interface Blueprint)   |
+  |                          |  |                          |
+  | - Vector Cosine Math     |  | - Decoupled IO Contract  |
+  | - O(1) Crash Safeguards  |  | - Ready for Binary/NIO   |
+  +--------------------------+  +--------------------------+
 
+============================================================
 ## ✨ Core Features
 
 * **Custom Math Kernel:** Hand-written implementation of multi-dimensional **Cosine Similarity** without external linear algebra dependencies.
