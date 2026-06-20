@@ -8,6 +8,8 @@ A high-performance, low-latency Vector Database built completely from scratch in
 
 J-Vector decouples memory storage from execution pipelines using clean engineering principles, making it an ideal engine for downstream AI pipelines like audio transcription search engines (e.g., TranscribeFlow).
 
+
+
 ========================================================================
                       J-VECTOR ENGINE ARCHITECTURE                      
 ========================================================================
